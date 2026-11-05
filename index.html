@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kebijakan Privasi — DompetRumah</title>
+<style>
+  :root { --bg:#fcf2e7; --card:#fffaf4; --ink:#241c16; --sub:#6e6358; --line:#e7d8c6; --accent:#8a5a2b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; line-height:1.65; }
+  main { max-width:760px; margin:0 auto; padding:48px 22px 72px; }
+  header { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+  .mark { width:46px; height:46px; border-radius:14px; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  h1 { font-size:30px; line-height:1.2; letter-spacing:-.02em; margin:0; }
+  .meta { color:var(--sub); font-size:14px; margin:4px 0 28px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22px 24px; margin-bottom:18px; }
+  h2 { font-size:19px; margin:0 0 10px; letter-spacing:-.01em; }
+  h3 { font-size:16px; margin:22px 0 8px; }
+  p, li { font-size:15px; }
+  ul { padding-left:20px; margin:8px 0; }
+  code { background:#f1e7da; padding:1px 6px; border-radius:6px; font-size:13px; }
+  a { color:var(--accent); }
+  .note { border-left:3px solid var(--accent); padding-left:14px; color:var(--sub); }
+  footer { color:var(--sub); font-size:13px; text-align:center; margin-top:34px; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#17110b; --card:#211a13; --ink:#f8f2ec; --sub:#c9bba9; --line:#3a2f24; --accent:#e0a970; }
+    code { background:#2d251c; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="mark" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 512 512" fill="none">
+        <path d="M92 218 256 78l164 140v176a34 34 0 0 1-34 34H126a34 34 0 0 1-34-34V218Z" stroke="#F6F3EC" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="256" cy="300" r="40" fill="#34D399"/>
+      </svg>
+    </span>
+    <h1>Kebijakan Privasi — DompetRumah</h1>
+  </header>
+  <p class="meta">Terakhir diperbarui: 5 November 2026 · Paket <code>com.dompetrumah.app</code></p>
+
+  <div class="card">
+    <h2>Ringkasan</h2>
+    <p>DompetRumah adalah aplikasi pencatat keuangan rumah tangga yang bekerja <strong>luring (offline-first)</strong>. Data keuangan Anda disimpan di perangkat Anda sendiri. Kami tidak memiliki server, tidak membuat akun pengguna, dan tidak mengumpulkan data pribadi Anda.</p>
+  </div>
+
+  <div class="card">
+    <h2>Data yang disimpan</h2>
+    <ul>
+      <li>Catatan dompet, transaksi, target tabungan, tagihan, dan utang/piutang.</li>
+      <li>Preferensi aplikasi (tema, mata uang utama, pengaturan pengingat).</li>
+      <li>PIN (disimpan sebagai hash PBKDF2 + salt — bukan angka aslinya), foto profil, dan lampiran struk yang Anda pilih.</li>
+    </ul>
+    <p>Semua data tersebut disimpan <strong>hanya di perangkat Anda</strong> menggunakan penyimpanan lokal aplikasi (LocalStorage/IndexedDB).</p>
+  </div>
+
+  <div class="card">
+    <h2>Data yang dikumpulkan atau dibagikan</h2>
+    <p><strong>Tidak ada.</strong> Aplikasi tidak mengirim data keuangan Anda ke mana pun, tidak memakai iklan, dan tidak memuat SDK analitik/pelacakan pihak ketiga.</p>
+  </div>
+
+  <div class="card">
+    <h2>Koneksi internet</h2>
+    <p>Aplikasi hanya menghubungi internet ketika Anda menekan tombol <strong>"Tarik Online"</strong> pada menu kurs, untuk mengambil nilai tukar dari penyedia publik:</p>
+    <ul>
+      <li><code>cdn.jsdelivr.net</code> (paket <code>@fawazahmed0/currency-api</code>)</li>
+      <li><code>latest.currency-api.pages.dev</code> (cermin cadangan)</li>
+    </ul>
+    <p>Permintaan tersebut hanya berisi permintaan data kurs; tidak ada data transaksi Anda yang dikirim. Seperti semua permintaan internet, penyedia CDN dapat melihat alamat IP perangkat Anda sesuai kebijakan privasi masing-masing layanan. Bila Anda tidak menekan tombol sinkronisasi, aplikasi tidak melakukan koneksi apa pun (selain memuat font dekoratif dari Google Fonts bila tersedia).</p>
+  </div>
+
+  <div class="card">
+    <h2>Izin perangkat</h2>
+    <ul>
+      <li><strong>Notifikasi</strong>: menampilkan pengingat harian dan jatuh tempo tagihan. Dapat dimatikan kapan saja.</li>
+      <li><strong>Alarm &amp; pengingat</strong>: agar pengingat harian muncul tepat waktu. Bila izin tidak diberikan, pengingat tetap berjalan dengan waktu yang mendekati.</li>
+      <li><strong>Biometrik (opsional)</strong>: membuka kunci aplikasi dengan sidik jari. Data biometrik diproses oleh sistem Android, tidak pernah diakses aplikasi.</li>
+      <li><strong>Penyimpanan</strong>: hanya saat Anda mengekspor cadangan/laporan ke file.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Cadangan dan ekspor</h2>
+    <p>File cadangan (JSON/Excel/CSV) dibuat oleh Anda dan disimpan di lokasi yang Anda pilih. Aplikasi tidak mengunggahnya ke cloud mana pun. Anda bertanggung jawab menjaga kerahasiaan file tersebut.</p>
+  </div>
+
+  <div class="card">
+    <h2>Keamanan</h2>
+    <ul>
+      <li>PIN aplikasi berfungsi sebagai pengunci tampilan dan disimpan sebagai hash.</li>
+      <li>Data lokal <strong>tidak dienkripsi</strong>; perangkat yang telah di-root atau tidak terkunci dapat mengaksesnya.</li>
+      <li>Kami menyarankan mengaktifkan kunci layar perangkat dan mengekspor cadangan secara berkala.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Anak-anak</h2>
+    <p>Aplikasi tidak ditujukan untuk anak di bawah 13 tahun dan tidak mengumpulkan data dari anak-anak.</p>
+  </div>
+
+  <div class="card">
+    <h2>Penghapusan data</h2>
+    <p>Hapus data dengan: menu <strong>Akun → Reset / Hapus data</strong>, atau hapus data aplikasi dari pengaturan Android, atau hapus instalasi aplikasi. Karena data hanya ada di perangkat, penghapusan bersifat permanen.</p>
+  </div>
+
+  <div class="card">
+    <h2>Perubahan kebijakan</h2>
+    <p>Perubahan akan diperbarui pada halaman ini beserta tanggal pembaruannya.</p>
+  </div>
+
+  <div class="card">
+    <h2>Kontak</h2>
+    <p>Pertanyaan tentang privasi: <a href="mailto:7kzd.yang@gmail.com">7kzd.yang@gmail.com</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Privacy Policy — English</h2>
+    <p>DompetRumah is an offline-first household finance tracker. All financial data is stored locally on your device. We do not operate servers, do not create user accounts, and do not collect personal data.</p>
+    <ul>
+      <li><strong>Stored locally:</strong> wallets, transactions, goals, bills, debts, preferences, PIN hash, profile photo and receipt images you attach.</li>
+      <li><strong>Collected/shared:</strong> none. No ads, no analytics or tracking SDKs.</li>
+      <li><strong>Network:</strong> only when you tap "Tarik Online", the app requests exchange rates from <code>cdn.jsdelivr.net</code> / <code>latest.currency-api.pages.dev</code>. No transaction data is sent.</li>
+      <li><strong>Permissions:</strong> notifications and alarms for reminders; optional biometric unlock; storage only when you export a file.</li>
+      <li><strong>Backups:</strong> files are created and saved by you; nothing is uploaded.</li>
+      <li><strong>Security:</strong> the PIN is hashed, but local data is not encrypted; a rooted/unlocked device can access it.</li>
+      <li><strong>Children:</strong> not directed to children under 13.</li>
+      <li><strong>Deletion:</strong> reset inside the app, clear app data in Android settings, or uninstall.</li>
+      <li><strong>Contact:</strong> <a href="mailto:7kzd.yang@gmail.com">7kzd.yang@gmail.com</a></li>
+    </ul>
+  </div>
+
+  <footer>DompetRumah · Satu rumah untuk semua dompet.</footer>
+</main>
+</body>
+</html>
